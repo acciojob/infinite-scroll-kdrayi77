@@ -14,7 +14,7 @@
       margin-bottom: 10px;
     }
 
-    #list {
+    #infi-list {
       width: 200px;
       height: 300px;           /* Fixed height */
       border: 5px solid black;
@@ -24,22 +24,22 @@
       list-style: none;
     }
 
-    #list li {
+    #infi-list li {
       padding: 10px;
       border-bottom: 1px solid #ddd;
     }
 
-    #list li:hover {
+    #infi-list li:hover {
       background: #ccc;
     }
   </style>
 </head>
 <body>
   <h2>Infinite Scroll</h2>
-  <ul id="list"></ul>
+  <ul id="infi-list"></ul>
 
   <script>
-    const list = document.getElementById("list");
+    const list = document.getElementById("infi-list");
     let itemCount = 0;
 
     // Function to add items
