@@ -1,18 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./styles.css" type="text/css" />
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Infinite Scroll</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
 
-    <title>Document</title>
-  </head>
-  <body>
-    <h2>Infinite Scroll</h2>
-    <main>
-      <ol id="infi-list"></ol>
-    </main>
-    <script src="./script.js"></script>
-  </body>
+    h2 {
+      margin-bottom: 10px;
+    }
+
+    #list {
+      width: 200px;
+      height: 300px;           /* Fixed height */
+      border: 5px solid black;
+      overflow-y: auto;        /* Enable scrolling */
+      padding: 0;
+      margin: 0;
+      list-style: none;
+    }
+
+    #list li {
+      padding: 10px;
+      border-bottom: 1px solid #ddd;
+    }
+
+    #list li:hover {
+      background: #ccc;
+    }
+  </style>
+</head>
+<body>
+  <h2>Infinite Scroll</h2>
+  <ul id="list"></ul>
+
+  <script>
+    const list = document.getElementById("list");
+    let itemCount = 0;
+
+    // Function to add items
+    function addItems(num) {
+      for (let i = 0; i < num; i++) {
+        const li = document.createElement("li");
+        li.textContent = `Item ${++itemCount}`;
+        list.appendChild(li);
+      }
+    }
+
+    // Add 10 items initially
+    addItems(10);
+
+    // Scroll event on the list itself
+    list.addEventListener("scroll", () => {
+      if (list.scrollTop + list.clientHeight >= list.scrollHeight) {
+        addItems(2); // Add 2 more when reaching bottom
+      }
+    });
+  </script>
+</body>
 </html>
